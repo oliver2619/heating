@@ -1,0 +1,20 @@
+{
+  "name": "heating",
+  "version": "1.0.0",
+  "description": "Assistant for heating",
+  "scripts": {
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/oliver2619/heating.git"
+  },
+  "keywords": [
+    "pwa"
+  ],
+  "author": "Oliver",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/oliver2619/heating/issues"
+  },
+  "homepage": "https://github.com/oliver2619/heating#readme"
+}
