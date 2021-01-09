@@ -1,0 +1,11 @@
+<div class="modal-header">
+	<h5 class="modal-title" hTranslate="question"></h5>
+</div>
+<div class="modal-body">
+	<p>{{message}}</p>
+</div>
+<div class="modal-footer">
+	<button (click)="onYes()" type="button" class="btn btn-primary" hTranslate="yes"></button>
+	<button (click)="onNo()" type="button" class="btn btn-secondary" hTranslate="no"></button>
+	<button *ngIf="cancelVisible" (click)="onCancel()" type="button" class="btn btn-secondary" hTranslate="cancel"></button>
+</div>

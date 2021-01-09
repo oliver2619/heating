@@ -1,0 +1,40 @@
+<div class="page">
+	<h-menu [title]="title">
+		<li class="nav-item"><a routerLink="/select-system" href="javascript:;" class="nav-link"><span class="fas fa-long-arrow-alt-up"></span></a></li>
+		<li class="nav-item"><a routerLink="/setup/{{id}}" href="javascript:;" class="nav-link"><span class="fas fa-pen"></span></a></li>
+		<li class="nav-item"><a routerLink="/heating/{{id}}" href="javascript:;" class="nav-link"><span class="fas fa-stopwatch"></span></a></li>
+	</h-menu>
+	<div class="container page-content my-3">
+		<div class="row h-100">
+			<div class="col-12">
+				<div class="d-flex flex-column justify-content-between">
+					<h6 hTranslate="history"></h6>
+					<div class="list-group flex-grow-1 mt-3">
+						<a *ngFor="let e of elements; let i = index" (click)="onSelect(i)" href="javascript:;" class="list-group-item list-group-item-action" [ngClass]="{active: e.selected}">
+							<div>{{e.title}}</div>
+							<div class="d-flex w-100 justify-content-between">
+								<small>{{'amount' | translate}}: {{e.amount}}</small>
+								<small>{{'temperature' | translate}}: {{e.startTemperature | number:'1.0-1'}}&deg; &#8594; {{e.endTemperature | number:'1.0-1'}}&deg;</small>
+							</div>
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="container mb-3">
+		<div class="row">
+			<div class="col-12 d-flex flex-row align-items-center justify-content-center">
+				<button (click)="onEdit()" type="button" class="btn btn-secondary ml-3 fas fa-eye" [disabled]="!canEdit"></button>
+				<button (click)="onRemove()" type="button" class="btn btn-secondary ml-3 fas fa-trash-alt" [disabled]="!canRemove"></button>
+				<div ngbDropdown class="d-inline-block ml-3">
+					<button ngbDropdownToggle type="button" class="btn btn-secondary"><span class="fas fa-bars"></span></button>
+					<div ngbDropdownMenu>
+						<button ngbDropdownItem (click)="onSelectAll(false)" type="button">Clear selection</button>
+						<button ngbDropdownItem (click)="onSelectAll(true)" type="button">Select all</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

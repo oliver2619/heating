@@ -1,0 +1,20 @@
+<div class="page">
+	<h-menu title="{{'activeSystems' | translate}}"></h-menu>
+	<div class="container page-content my-3">
+		<div class="row">
+			<div class="col-12">
+				<div class="list-group">
+					<a *ngFor="let e of elements" routerLink="/heating/{{e.id}}" href="javascript:;" class="list-group-item list-group-item-action">
+						<div>{{e.title}}</div>
+						<small>{{'lastRecord' | translate}}: {{e.subtitle}}</small>
+					</a>
+				</div>
+			</div>
+		</div>
+		<div *ngIf="empty" class="row">
+			<div class="col-12">
+				<div class="alert alert-info" hTranslate="systems.empty"></div>
+			</div>
+		</div>
+	</div>
+</div>

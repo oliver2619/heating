@@ -1,0 +1,44 @@
+<div class="page">
+	<h-menu [title]="title">
+		<li class="nav-item"><a routerLink="/history/{{id}}" href="javascript:;" class="nav-link"><span class="fas fa-long-arrow-alt-up"></span></a></li>
+	</h-menu>
+	<div class="container page-content my-3">
+		<div class="row h-100">
+			<div class="col-12">
+				<h6 hTranslate="record"></h6>
+				<form [formGroup]="formGroup">
+					<div class="form-group">
+						<label for="common.amount" hTranslate="amount"></label>
+						<input formControlName="amount" id="common.amount" type="number" readonly="readonly" class="form-control">
+					</div>
+					<div class="form-group">
+						<label for="common.startTime" hTranslate="startTime"></label>
+						<input formControlName="startTime" id="common.startTime" type="text" readonly="readonly" class="form-control">
+					</div>
+					<div class="form-group">
+						<label for="common.startTemperature" hTranslate="startTemperature"></label>
+						<input formControlName="startTemperature" id="common.startTemperature" readonly="readonly" type="number" class="form-control">
+					</div>
+					<div class="form-group">
+						<label for="common.endTime" hTranslate="endTime"></label>
+						<input formControlName="endTime" id="common.endTime" type="text" readonly="readonly" class="form-control">
+					</div>
+					<div class="form-group">
+						<label for="common.endTemperature" hTranslate="endTemperature"></label>
+						<input formControlName="endTemperature" id="common.endTemperature" type="number" readonly="readonly" class="form-control">
+					</div>
+				</form>
+				<div class="container">
+					<div class="row">
+						<div class="col-12 d-flex flex-row justify-content-center">
+				<!-- 
+							<button (click)="onSave()" [disabled]="!canSave" type="button" class="btn btn-primary fas fa-check"></button>
+				 -->
+							<button routerLink="/setup/{{id}}/history" type="button" class="btn btn-secondary ml-3 fas fa-times"></button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

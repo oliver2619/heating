@@ -1,0 +1,31 @@
+<div class="page">
+	<h-menu title="{{'systems' | translate}}"></h-menu>
+	<div class="container page-content my-3">
+		<div class="row">
+			<div class="col-12">
+				<div class="list-group">
+					<a *ngFor="let e of elements" (click)="onSelect(e.id)" href="javascript:;" class="list-group-item list-group-item-action" [ngClass]="{active: selection === e.id}">
+						<div>{{e.title}}</div>
+						<small *ngIf="e.active" hTranslate="active"></small>
+					</a>
+				</div>
+			</div>
+		</div>
+		<div *ngIf="empty" class="row">
+			<div class="col-12">
+				<div class="alert alert-info" hTranslate="systems.empty"></div>
+			</div>
+		</div>
+	</div>
+	<div class="container mb-3">
+		<div class="row">
+			<div class="col-12 d-flex flex-row justify-content-center">
+				<button (click)="onAdd()" type="button" class="btn btn-secondary fas fa-plus"></button>
+				<button (click)="onEdit()" type="button" class="btn btn-secondary ml-3 fas fa-pen" [disabled]="!canEdit"></button>
+				<button routerLink="/heating/{{selection}}" type="button" class="btn btn-secondary ml-3 fas fa-stopwatch" [disabled]="!canStart"></button>
+				<button routerLink="/history/{{selection}}" type="button" class="btn btn-secondary ml-3 fas fa-history"></button>
+				<button (click)="onDelete()" type="button" class="btn btn-secondary ml-3 fas fa-trash-alt" [disabled]="!canEdit"></button>
+			</div>
+		</div>
+	</div>
+</div>

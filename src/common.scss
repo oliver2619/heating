@@ -1,0 +1,13 @@
+@import "../node_modules/@fortawesome/fontawesome-free/scss/solid.scss";
+@import "../node_modules/@fortawesome/fontawesome-free/scss/fontawesome.scss";
+@import "../node_modules/bootstrap/scss/bootstrap.scss";
+
+.ng-invalid {
+	@extend .is-invalid;
+}
+
+/*
+.ng-valid.ng-dirty {
+	@extend .is-valid;
+}
+*/

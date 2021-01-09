@@ -1,0 +1,22 @@
+<div class="page">
+	<h-menu [title]="title">
+		<li class="nav-item"><a routerLink="/select-system" href="javascript:;" class="nav-link"><span class="fas fa-long-arrow-alt-up"></span></a></li>
+		<li class="nav-item"><a routerLink="/heating/{{id}}" href="javascript:;" class="nav-link"><span class="fas fa-stopwatch"></span></a></li>
+		<li class="nav-item"><a routerLink="/history/{{id}}" href="javascript:;" class="nav-link"><span class="fas fa-history"></span></a></li>
+	</h-menu>
+	<div class="container page-content my-3">
+		<div class="row h-100">
+			<div class="col-12 d-flex flex-column">
+				<h6 hTranslate="setup"></h6>
+				<ul class="nav nav-tabs">
+					<li class="nav-item"><a routerLink="common" href="javascript:;" class="nav-link" routerLinkActive="active" hTranslate="common"></a></li>
+					<li class="nav-item"><a routerLink="active" href="javascript:;" class="nav-link" routerLinkActive="active" hTranslate="active"></a></li>
+					<li class="nav-item"><a routerLink="passive" href="javascript:;" class="nav-link" routerLinkActive="active" hTranslate="passive"></a></li>
+				</ul>
+				<div class="border-left border-right border-bottom p-3 flex-grow-1 flex-shrink-1">
+					<router-outlet></router-outlet>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

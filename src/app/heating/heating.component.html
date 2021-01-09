@@ -1,0 +1,77 @@
+<div class="page">
+	<h-menu [title]="title">
+		<li class="nav-item"><a routerLink="/select-system" href="javascript:;" class="nav-link"><span class="fas fa-long-arrow-alt-up"></span></a></li>
+		<li class="nav-item"><a routerLink="/setup/{{id}}" href="javascript:;" class="nav-link"><span class="fas fa-pen"></span></a></li>
+		<li class="nav-item"><a routerLink="/history/{{id}}" href="javascript:;" class="nav-link"><span class="fas fa-history"></span></a></li>
+		<li *ngIf="isRecording" class="nav-item"><a routerLink="/calculator/{{id}}" href="javascript:;" class="nav-link"><span class="fas fa-calculator"></span></a></li>
+	</h-menu>
+	<div class="container page-content my-3">
+		<div class="row h-100">
+			<div class="col-12">
+				<h6 hTranslate="system"></h6>
+				<form [formGroup]="systemForm">
+					<div class="form-row">
+						<div class="form-group col-6">
+							<label hTranslate="amount"></label>
+							<div class="input-group">
+								<input formControlName="amount" type="number" class="form-control">
+								<div *ngIf="hasAmountUnit" class="input-group-append"><span class="input-group-text">{{amountUnit}}</span></div>
+							</div>
+							<div class="invalid-feedback" hTranslate="err.amount" [ngStyle]="{display: systemForm.controls.amount.valid ? 'none' : 'inline-block'}"></div>
+						</div>
+						<div class="form-group col-6">
+							<label hTranslate="temperature"></label>
+							<div class="input-group">
+								<input formControlName="temperature" type="number" class="form-control">
+								<div *ngIf="hasTemperatureUnit" class="input-group-append"><span class="input-group-text">&deg;&nbsp;{{temperatureUnit}}</span></div>
+							</div>
+							<div class="invalid-feedback" hTranslate="err.temperature" [ngStyle]="{display: systemForm.controls.temperature.valid ? 'none' : 'inline-block'}"></div>
+						</div>
+					</div>
+				</form>
+				<h6 hTranslate="energySupply"></h6>
+				<form [formGroup]="energySuppliersForm">
+					<div *ngFor="let s of energySuppliers" class="form-group">
+						<label>{{s.name}}</label>
+						<div class="input-group">
+							<input [formControlName]="s.formControlName" type="number" class="form-control">
+							<div *ngIf="s.hasUnit" class="input-group-append"><span class="input-group-text">{{s.unit}}</span></div>
+							<div class="input-group-append">
+								<button (click)="onInsertEnergy(s.id, energySuppliersForm.value[s.formControlName])" [disabled]="!(energySuppliersForm.controls[s.formControlName].valid && canRecord)" type="button" class="btn btn-success fas fa-plus"></button>
+							</div>
+						</div>
+					</div>
+				</form>
+				<h6 hTranslate="parameters"></h6>
+				<form [formGroup]="parametersForm">
+					<div *ngFor="let p of inputParameters" class="form-group">
+						<label>{{p.name}}</label>
+						<div *ngIf="p.type !== 'boolean'" class="input-group">
+							<input [formControlName]="p.formControlName" type="number" class="form-control">
+							<div *ngIf="p.hasUnit" class="input-group-append"><span class="input-group-text">{{p.unit}}</span></div>
+						</div>
+						<select *ngIf="p.type === 'boolean'" [formControlName]="p.formControlName" class="form-control">
+							<option value="false" hTranslate="no"></option>
+							<option value="true" hTranslate="yes"></option>
+						</select>
+						<div class="invalid-feedback" [ngStyle]="{display: parametersForm.controls[p.formControlName].valid ? 'none' : 'inline-block'}">{{p.errorText}}</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	<div class="container mb-3">
+		<div *ngIf="!canRecord" class="row">
+			<div class="col-12">
+				<div class=" alert alert-danger" role="alert" hTranslate="err.formInvalid"></div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-12 d-flex flex-row align-items-center justify-content-center">
+				<div class="spinner-grow text-danger" role="status" [ngStyle]="{visibility: isRecording ? 'visible' : 'hidden'}"></div>
+				<button (click)="onRecord()" [disabled]="!canRecord" type="button" class="btn btn-success btn-lg ml-3 fas fa-stopwatch"></button>
+				<button (click)="onStop()" [disabled]="!canStop" type="button" class="btn btn-secondary btn-lg ml-3 fas fa-stop-circle"></button>
+			</div>
+		</div>
+	</div>
+</div>

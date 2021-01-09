@@ -1,0 +1,15 @@
+@import "../common.scss";
+
+.toasts {
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 1000;
+	margin-left: $spacer;
+	margin-top: $spacer;
+	pointer-events: none;
+}
+
+ngb-toast {
+	pointer-events: all;
+}

@@ -1,0 +1,44 @@
+<div class="page">
+	<h-menu [title]="title">
+		<li class="nav-item"><a routerLink="/heating/{{id}}" href="javascript:;" class="nav-link"><span class="fas fa-long-arrow-alt-up"></span></a></li>
+	</h-menu>
+	<div class="container page-content my-3">
+		<div class="row">
+			<div class="col-12">
+				<h6 hTranslate="calculator"></h6>
+				<form [formGroup]="formGroup">
+					<div class="form-group">
+						<label hTranslate="estimatedTemperature"></label>
+						<div class="input-group">
+							<input formControlName="estimatedTemperature" type="number" readonly="readonly" class="form-control">
+							<div *ngIf="hasTemperatureUnit" class="input-group-append"><span class="input-group-text">&deg;&nbsp;{{temperatureUnit}}</span></div>
+						</div>
+					</div>
+					<div class="form-group">
+						<label hTranslate="targetTemperature"></label>
+						<div class="input-group">
+							<input formControlName="targetTemperature" type="number" class="form-control">
+							<div *ngIf="hasTemperatureUnit" class="input-group-append"><span class="input-group-text">&deg;&nbsp;{{temperatureUnit}}</span></div>
+						</div>
+					</div>
+					<div *ngIf="hasTargetTemperature" class="form-group">
+						<label hTranslate="duration"></label>
+						<div class="input-group">
+							<input formControlName="duration" type="string" readonly="readonly" class="form-control">
+							<div *ngIf="hasDurationUnit" class="input-group-append"><span class="input-group-text">{{durationUnit}}</span></div>
+						</div>
+					</div>
+					<div *ngIf="!hasTargetTemperature" class="alert alert-danger" hTranslate="err.temperature"></div>
+				</form>
+			</div>
+		</div>
+	</div>
+	<div class="container mb-3">
+		<div class="row">
+			<div class="col-12 d-flex flex-row align-items-center justify-content-center">
+				<div class="spinner-grow text-danger" role="status" style="visibility: visible"></div>
+				<button routerLink="/heating/{{id}}" type="button" class="btn btn-secondary fas fa-times ml-3"></button>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,46 @@
+<div class="page">
+	<h-menu [title]="title">
+		<li class="nav-item"><a routerLink="/setup/{{id}}/active" href="javascript:;" class="nav-link"><span class="fas fa-long-arrow-alt-up"></span></a></li>
+	</h-menu>
+	<div class="container page-content my-3">
+		<div class="row h-100">
+			<div class="col-12">
+				<h6 hTranslate="activeElement"></h6>
+				<form [formGroup]="formGroup">
+					<div class="form-group">
+						<label for="name" hTranslate="name"></label>
+						<input formControlName="name" id="name" type="text" class="form-control" placeholder="{{'msg.enterName' | translate}}">
+						<div class="invalid-feedback" hTranslate="err.nameNotEmpty"></div>
+					</div>
+					<div class="form-group">
+						<label for="type" hTranslate="type"></label>
+						<select formControlName="type" id="type" class="form-control">
+							<option value="constant" hTranslate="constantEnergySource"></option>
+							<option value="discrete" hTranslate="discreteEnergySupply"></option>
+						</select>
+					</div>
+					<div class="form-group">
+						<label for="unit" hTranslate="unit"></label>
+						<input formControlName="unit" id="unit" type="string" class="form-control">
+					</div>
+					<div class="form-group" [ngStyle]="{visibility: hasMaximum ? 'visible': 'hidden'}">
+						<label for="maximum" hTranslate="maximum"></label>
+						<input formControlName="maxValue" id="maximum" type="number" class="form-control" placeholder="{{'msg.enterMaxValue' | translate}}">
+						<div class="invalid-feedback" hTranslate="err.maxValue"></div>
+					</div>
+					<div *ngIf="!canEdit" class="alert alert-warning" role="alert">
+						<span hTranslate="warn.unableToEditCompletely"></span>&nbsp;<a routerLink="/history/{{id}}" href="javascript:;" hTranslate="goToHistory"></a>
+					</div>
+				</form>
+				<div class="container">
+					<div class="row">
+						<div class="col-12 d-flex flex-row justify-content-center">
+							<button (click)="onSave()" [disabled]="!canSave" type="button" class="btn btn-primary fas fa-check"></button>
+							<button (click)="onCancel()" type="button" class="btn btn-secondary ml-3 fas fa-times"></button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

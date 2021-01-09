@@ -1,0 +1,16 @@
+{
+	"name": "Heating",
+	"short_name": "Heating",
+	"theme_color": "#fff080",
+	"background_color": "#ffffff",
+	"display": "standalone",
+    "orientation": "portrait",
+    "scope": "/oliver2619.github.io/heating",
+    "start_url": "/oliver2619.github.io/heating",
+	"icons": [{
+		"src": "assets/icons/icon64.png",
+		"sizes": "64x64",
+		"type": "image/png",
+		"purpose": "maskable any"
+	}]
+}
