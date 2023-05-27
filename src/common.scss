@@ -2,6 +2,11 @@
 @import "../node_modules/@fortawesome/fontawesome-free/scss/fontawesome.scss";
 @import "../node_modules/bootstrap/scss/bootstrap.scss";
 
+
+.fas {
+	font-family: $fa-style-family !important
+}
+
 .ng-invalid {
 	@extend .is-invalid;
 }

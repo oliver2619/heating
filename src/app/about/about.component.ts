@@ -1,5 +1,5 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
-import {version} from '../../../package.json';
+import packageJson from '../../../package.json';
 
 @Component({
 	selector: 'h-about',
@@ -12,6 +12,6 @@ export class AboutComponent {
 	readonly version: string;
 	
 	constructor() { 
-		this.version = version;
+		this.version = packageJson.version;
 	}
 }
