@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { System, SystemJson, SystemState } from './system';
 import { LocalStorageService } from './local-storage.service';
-import { ActiveElement } from './active-element';
-import { PassiveElement } from './passive-element';
+import { ActiveElement, ActiveElementType } from './active-element';
+import { PassiveElement, PassiveElementType } from './passive-element';
 
 interface SystemServiceJson {
 	version: 1,
@@ -28,15 +28,17 @@ export class SystemService {
 		}
 	}
 
-	addActiveElement(name: string, system: System): ActiveElement {
+	addActiveElement(name: string, type: ActiveElementType, system: System): ActiveElement {
 		const ret = ActiveElement.newElement(this.getNextId(), name);
+		ret.type = type;
 		system.addActiveElement(ret);
 		this.saveSystem(system);
 		return ret;
 	}
 
-	addPassiveElement(name: string, system: System): PassiveElement {
+	addPassiveElement(name: string, type: PassiveElementType, system: System): PassiveElement {
 		const ret = PassiveElement.newElement(this.getNextId(), name);
+		ret.type = type;
 		system.addPassiveElement(ret);
 		this.saveSystem(system);
 		return ret;

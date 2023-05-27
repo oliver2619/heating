@@ -1,0 +1,34 @@
+<div class="page">
+	<h-menu [title]="title">
+		<li class="nav-item"><a routerLink="/setup/{{id}}/passive" href="javascript:;" class="nav-link"><span class="fas fa-long-arrow-alt-up"></span></a></li>
+	</h-menu>
+	<div class="container page-content my-3">
+		<div class="row h-100">
+			<div class="col-12">
+				<form [formGroup]="formGroup">
+					<div class="form-group">
+						<label for="name" hTranslate="name"></label>
+						<input formControlName="name" id="name" type="text" class="form-control" placeholder="{{'msg.enterName' | translate}}">
+						<div class="invalid-feedback" hTranslate="err.nameNotEmpty"></div>
+					</div>
+					<div class="form-group">
+						<label for="type" hTranslate="type"></label>
+						<select formControlName="type" id="type" class="form-control">
+							<option value="temperature" hTranslate="temperature"></option>
+							<option value="boolean" hTranslate="state"></option>
+							<option value="number" hTranslate="setting"></option>
+						</select>
+					</div>
+				</form>
+				<div class="container">
+					<div class="row">
+						<div class="col-12 d-flex flex-row justify-content-center">
+							<button (click)="onSave()" [disabled]="!canSave" type="button" class="btn btn-primary fas fa-check"></button>
+							<button routerLink="/setup/{{id}}/passive" type="button" class="btn btn-secondary ml-3 fas fa-times"></button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

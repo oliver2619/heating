@@ -34,6 +34,10 @@ export class PassiveElementsComponent {
 		return system !== undefined && system.canEdit;
 	}
 
+	get hasElements(): boolean {
+		return this.elements.length > 0;
+	}
+
 	constructor(private readonly systemService: SystemService,
 		private readonly router: Router,
 		private readonly messageBoxService: MessageBoxService,
@@ -43,20 +47,6 @@ export class PassiveElementsComponent {
 	) {
 		this.id = activatedRoute.parent !== null ? activatedRoute.parent.snapshot.params['id'] : undefined;
 		this.updateElements();
-	}
-
-	onAdd(): void {
-		const system = this.getSystem();
-		if (system !== undefined) {
-			const el = this.systemService.addPassiveElement(this.translateService.get('newElement'), system);
-			this.router.navigate(['setup', this.id, 'passive', el.id]);
-		}
-	}
-
-	onEdit(): void {
-		if (this.selection !== undefined) {
-			this.router.navigate(['setup', this.id, 'passive', this.selection]);
-		}
 	}
 
 	onRemove(): void {

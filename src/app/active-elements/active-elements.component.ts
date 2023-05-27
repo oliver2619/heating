@@ -34,6 +34,10 @@ export class ActiveElementsComponent {
 		return system !== undefined && system.canEdit;
 	}
 
+	get hasElements(): boolean {
+		return this.elements.length > 0;
+	}
+
 	constructor(private readonly systemService: SystemService,
 		private readonly router: Router,
 		private readonly messageBoxService: MessageBoxService,
@@ -43,14 +47,6 @@ export class ActiveElementsComponent {
 	) {
 		this.id = activatedRoute.parent !== null ? activatedRoute.parent.snapshot.params['id'] : undefined;
 		this.updateElements();
-	}
-
-	onAdd(): void {
-		const system = this.getSystem();
-		if (system !== undefined) {
-			const el = this.systemService.addActiveElement(this.translateService.get('newElement'), system);
-			this.router.navigate(['setup', this.id, 'active', el.id]);
-		}
 	}
 
 	onEdit(): void {

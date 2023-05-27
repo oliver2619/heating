@@ -14,6 +14,9 @@ import { ActiveSystemsComponent } from './active-systems/active-systems.componen
 import { HistoryComponent } from './history/history.component';
 import { RecordingComponent } from './recording/recording.component';
 import { CalculatorComponent } from './calculator/calculator.component';
+import { NewSystemComponent } from './new-system/new-system.component';
+import { NewActiveElementComponent } from './new-active-element/new-active-element.component';
+import { NewPassiveElementComponent } from './new-passive-element/new-passive-element.component';
 
 const routes: Routes = [{
 	path: '',
@@ -76,12 +79,24 @@ const routes: Routes = [{
 	pathMatch: 'full',
 	component: HistoryComponent
 }, {
+	path: 'newSystem',
+	pathMatch: 'full',
+	component: NewSystemComponent
+}, {
+	path: 'newActiveElement/:id',
+	pathMatch: 'full',
+	component: NewActiveElementComponent
+}, {
+	path: 'newPassiveElement/:id',
+	pathMatch: 'full',
+	component: NewPassiveElementComponent
+}, {
 	path: '**',
 	redirectTo: '/select-system'
 }];
 
 @NgModule({
-	imports: [RouterModule.forRoot(routes)],
+	imports: [RouterModule.forRoot(routes, { useHash: true })],
 	exports: [RouterModule]
 })
 export class AppRoutingModule { }

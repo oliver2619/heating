@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, ErrorHandler } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -25,6 +25,10 @@ import { RecordingComponent } from './recording/recording.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { CalculatorComponent } from './calculator/calculator.component';
+import { NewSystemComponent } from './new-system/new-system.component';
+import { NewActiveElementComponent } from './new-active-element/new-active-element.component';
+import { NewPassiveElementComponent } from './new-passive-element/new-passive-element.component';
+import { HeatingErrorHandlerService } from './heating-error-handler.service';
 
 @NgModule({
 	declarations: [
@@ -46,7 +50,10 @@ import { CalculatorComponent } from './calculator/calculator.component';
 		ActiveSystemsComponent,
 		HistoryComponent,
 		RecordingComponent,
-		CalculatorComponent
+		CalculatorComponent,
+		NewSystemComponent,
+		NewActiveElementComponent,
+		NewPassiveElementComponent
 	],
 	imports: [
 		BrowserModule,
@@ -56,7 +63,10 @@ import { CalculatorComponent } from './calculator/calculator.component';
 		NgbModule,
 		ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
 	],
-	providers: [],
+	providers: [{
+		provide: ErrorHandler,
+		useClass: HeatingErrorHandlerService
+	}],
 	bootstrap: [AppComponent]
 })
 export class AppModule { }

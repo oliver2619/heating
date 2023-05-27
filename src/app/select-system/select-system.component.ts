@@ -50,11 +50,6 @@ export class SelectSystemComponent {
 		this.updateList();
 	}
 
-	onAdd(): void {
-		const system = this.systemService.addSystem(this.translateService.get('newElement'));
-		this.router.navigate(['setup', system.id]);
-	}
-
 	onEdit(): void {
 		if (this.selection !== undefined) {
 			this.router.navigate(['setup', this.selection]);
@@ -90,7 +85,7 @@ export class SelectSystemComponent {
 			};
 			return ret;
 		});
-		if(this.selection === undefined && this.elements.length > 0) {
+		if (this.selection === undefined && this.elements.length > 0) {
 			this.selection = this.elements[0].id;
 		}
 	}

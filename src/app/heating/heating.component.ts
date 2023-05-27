@@ -6,6 +6,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { TranslateService } from '../translate.service';
 import { MessageBoxService } from '../message-box.service';
 import { MessageBoxQuestion, MessageBoxResult } from '../message-box';
+import { ToastService } from '../toast.service';
 
 type HeatingComponentParameterType = 'number' | 'boolean';
 
@@ -108,6 +109,7 @@ export class HeatingComponent {
 
 	constructor(private readonly systemService: SystemService,
 		private readonly messageBoxService: MessageBoxService,
+		private readonly toastService: ToastService,
 		private readonly translateService: TranslateService,
 		private readonly changeDetectorRef: ChangeDetectorRef,
 		activatedRoute: ActivatedRoute,
@@ -180,7 +182,7 @@ export class HeatingComponent {
 				s.activeElements[id] = amount;
 				this.systemService.recordSystem(this.system, s);
 				const msg = this.translateService.get('info.insertedElement', amount, e.name);
-				this.messageBoxService.info(msg);
+				this.toastService.info(msg);
 			}
 		}
 	}
@@ -188,7 +190,7 @@ export class HeatingComponent {
 	onRecord(): void {
 		if (this.system !== undefined) {
 			this.systemService.recordSystem(this.system, this.state);
-			this.messageBoxService.info(this.translateService.get('info.snapshotRecorded'));
+			this.toastService.info(this.translateService.get('info.snapshotRecorded'));
 			this.changeDetectorRef.markForCheck();
 		}
 	}
@@ -202,7 +204,7 @@ export class HeatingComponent {
 				next: result => {
 					if (result === MessageBoxResult.YES) {
 						this.systemService.stopSystem(system);
-						this.messageBoxService.info(this.translateService.get('info.stopRecording'));
+						this.toastService.info(this.translateService.get('info.stopRecording'));
 						this.changeDetectorRef.markForCheck();
 					}
 				}

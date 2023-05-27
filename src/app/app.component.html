@@ -1,7 +1,7 @@
 <div class="toasts">
 	<ngb-toast *ngFor="let m of messages; let i = index" (click)="hideMessage(i)" [delay]="10000" [autohide]="true" (hide)="hideMessage(i)">
-		<span class="fas fa-info"></span>
-		<span class="ml-3">{{m.message}}</span>
+		<span class="fas fa-{{m.icon}} text-{{m.color}}"></span>
+		<span class="ml-3 text-{{m.color}}">{{m.message}}</span>
 	</ngb-toast>
 </div>
 <router-outlet></router-outlet>
