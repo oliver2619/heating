@@ -1,7 +1,7 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PassiveElementType, PassiveElement } from '../passive-element';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormBuilder, Validators } from '@angular/forms';
 import { SystemService } from '../system.service';
 import { System } from '../system';
 
@@ -21,7 +21,7 @@ export class PassiveElementComponent {
 
 	readonly id: string | undefined;
 	readonly pid: string | undefined;
-	readonly formGroup: FormGroup;
+	readonly formGroup: UntypedFormGroup;
 
 	get canEdit(): boolean {
 		const system = this.getSystem();
@@ -48,7 +48,7 @@ export class PassiveElementComponent {
 	constructor(private readonly systemService: SystemService,
 		private readonly router: Router,
 		activatedRoute: ActivatedRoute,
-		formBuilder: FormBuilder
+		formBuilder: UntypedFormBuilder
 	) {
 		this.formGroup = formBuilder.group({});
 		this.id = activatedRoute.snapshot.params['id'];

@@ -1,5 +1,5 @@
 import { Component, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormBuilder, Validators } from '@angular/forms';
 import { SystemService } from '../system.service';
 import { System } from '../system';
 import { ActivatedRoute } from '@angular/router';
@@ -18,7 +18,7 @@ interface SetupComponentValue {
 })
 export class SetupCommonComponent {
 
-	readonly formGroup: FormGroup;
+	readonly formGroup: UntypedFormGroup;
 
 	private id: string | undefined;
 
@@ -32,7 +32,7 @@ export class SetupCommonComponent {
 
 	constructor(private readonly systemService: SystemService,
 		private readonly changeDetectorRef: ChangeDetectorRef,
-		formBuilder: FormBuilder,
+		formBuilder: UntypedFormBuilder,
 		activatedRoute: ActivatedRoute
 	) {
 		this.formGroup = formBuilder.group({});

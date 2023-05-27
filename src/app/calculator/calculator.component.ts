@@ -1,6 +1,6 @@
 import { Component, ChangeDetectionStrategy, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { System } from '../system';
 import { SystemService } from '../system.service';
 import { TranslateService } from '../translate.service';
@@ -20,7 +20,7 @@ interface CalculatorComponentValue {
 export class CalculatorComponent implements OnInit, OnDestroy {
 
 	readonly id: string;
-	readonly formGroup: FormGroup;
+	readonly formGroup: UntypedFormGroup;
 
 	durationUnit: string | undefined;
 
@@ -51,7 +51,7 @@ export class CalculatorComponent implements OnInit, OnDestroy {
 		private readonly systemService: SystemService,
 		private readonly translateService: TranslateService,
 		activatedRoute: ActivatedRoute,
-		formBuilder: FormBuilder
+		formBuilder: UntypedFormBuilder
 	) {
 		this.id = activatedRoute !== null ? activatedRoute.snapshot.params['id'] : undefined;
 		this.system = this.id !== undefined ? this.systemService.getSystem(this.id) : undefined;

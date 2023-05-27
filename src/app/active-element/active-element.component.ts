@@ -1,6 +1,6 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { System } from '../system';
 import { SystemService } from '../system.service';
 import { ActiveElement, ActiveElementType } from '../active-element';
@@ -22,7 +22,7 @@ export class ActiveElementComponent {
 
 	readonly id: string | undefined;
 	readonly aid: string | undefined;
-	readonly formGroup: FormGroup;
+	readonly formGroup: UntypedFormGroup;
 
 	get canSave(): boolean {
 		return this.formGroup.valid;
@@ -49,7 +49,7 @@ export class ActiveElementComponent {
 	constructor(private readonly systemService: SystemService,
 		private readonly router: Router,
 		activatedRoute: ActivatedRoute,
-		formBuilder: FormBuilder
+		formBuilder: UntypedFormBuilder
 	) {
 		this.formGroup = formBuilder.group({});
 		this.id = activatedRoute.snapshot.params['id'];

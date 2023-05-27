@@ -1,6 +1,6 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { PassiveElementType } from '../passive-element';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormBuilder, Validators } from '@angular/forms';
 import { SystemService } from '../system.service';
 import { Router, ActivatedRoute } from '@angular/router';
 
@@ -18,7 +18,7 @@ interface NewPassiveElementComponentValue {
 export class NewPassiveElementComponent {
 
 	readonly id: string;
-	readonly formGroup: FormGroup;
+	readonly formGroup: UntypedFormGroup;
 
 	get canSave(): boolean {
 		return this.formGroup.valid;
@@ -32,7 +32,7 @@ export class NewPassiveElementComponent {
 	constructor(
 		private readonly systemService: SystemService,
 		private readonly router: Router,
-		formBuilder: FormBuilder,
+		formBuilder: UntypedFormBuilder,
 		activatedRoute: ActivatedRoute
 	) { 
 		this.id = activatedRoute.snapshot.params['id'];

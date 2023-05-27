@@ -2,7 +2,7 @@ import { Component, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/
 import { SystemService } from '../system.service';
 import { System, SystemState } from '../system';
 import { ActivatedRoute } from '@angular/router';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormBuilder, Validators } from '@angular/forms';
 import { TranslateService } from '../translate.service';
 import { MessageBoxService } from '../message-box.service';
 import { MessageBoxQuestion, MessageBoxResult } from '../message-box';
@@ -46,9 +46,9 @@ export class HeatingComponent {
 	private static readonly PASSIVE_PREFIX = 'passive.';
 
 	readonly id: string;
-	readonly systemForm: FormGroup;
-	readonly parametersForm: FormGroup;
-	readonly energySuppliersForm: FormGroup;
+	readonly systemForm: UntypedFormGroup;
+	readonly parametersForm: UntypedFormGroup;
+	readonly energySuppliersForm: UntypedFormGroup;
 	readonly inputParameters: HeatingComponentParameter[];
 	readonly energySuppliers: HeatingComponentEnergySupply[];
 
@@ -113,7 +113,7 @@ export class HeatingComponent {
 		private readonly translateService: TranslateService,
 		private readonly changeDetectorRef: ChangeDetectorRef,
 		activatedRoute: ActivatedRoute,
-		formBuilder: FormBuilder
+		formBuilder: UntypedFormBuilder
 	) {
 		this.id = activatedRoute !== null ? activatedRoute.snapshot.params['id'] : undefined;
 		this.system = this.id !== undefined ? this.systemService.getSystem(this.id) : undefined;

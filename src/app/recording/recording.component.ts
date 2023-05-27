@@ -1,6 +1,6 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormBuilder, Validators } from '@angular/forms';
 import { SystemService } from '../system.service';
 import { Recording } from '../recording';
 
@@ -14,7 +14,7 @@ export class RecordingComponent {
 
 	readonly id: string;
 	readonly record: Recording | undefined;
-	readonly formGroup: FormGroup;
+	readonly formGroup: UntypedFormGroup;
 
 	get title(): string {
 		const system = this.systemService.getSystem(this.id);
@@ -24,7 +24,7 @@ export class RecordingComponent {
 	constructor(
 		private readonly systemService: SystemService,
 		activatedRoute: ActivatedRoute,
-		formBuilder: FormBuilder
+		formBuilder: UntypedFormBuilder
 	) {
 		this.id = activatedRoute.snapshot.params['id'];
 		const recordId = activatedRoute.snapshot.params['time'];

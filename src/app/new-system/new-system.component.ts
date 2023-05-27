@@ -1,5 +1,5 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormBuilder, Validators } from '@angular/forms';
 import { SystemService } from '../system.service';
 import { Router } from '@angular/router';
 
@@ -15,7 +15,7 @@ interface NewSystemComponentValue {
 })
 export class NewSystemComponent {
 
-	readonly formGroup: FormGroup;
+	readonly formGroup: UntypedFormGroup;
 
 	get canSave(): boolean {
 		return this.formGroup.valid;
@@ -24,7 +24,7 @@ export class NewSystemComponent {
 	constructor(
 		private readonly systemService: SystemService,
 		private readonly router: Router,
-		formBuilder: FormBuilder
+		formBuilder: UntypedFormBuilder
 	) {
 		this.formGroup = formBuilder.group({});
 		this.formGroup.addControl('name', formBuilder.control('', Validators.required));

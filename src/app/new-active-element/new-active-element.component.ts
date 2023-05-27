@@ -1,5 +1,5 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormBuilder, Validators } from '@angular/forms';
 import { SystemService } from '../system.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ActiveElementType } from '../active-element';
@@ -18,7 +18,7 @@ interface NewActiveElementComponentValue {
 export class NewActiveElementComponent {
 
 	readonly id: string;
-	readonly formGroup: FormGroup;
+	readonly formGroup: UntypedFormGroup;
 
 	get canSave(): boolean {
 		return this.formGroup.valid;
@@ -32,7 +32,7 @@ export class NewActiveElementComponent {
 	constructor(
 		private readonly systemService: SystemService,
 		private readonly router: Router,
-		formBuilder: FormBuilder,
+		formBuilder: UntypedFormBuilder,
 		activatedRoute: ActivatedRoute
 	) {
 		this.id = activatedRoute.snapshot.params['id'];
